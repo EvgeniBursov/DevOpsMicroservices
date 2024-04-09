@@ -6,6 +6,6 @@ COPY . .
 
 RUN pip install -r requirements.txt
 
-CMD ["python", "add.py"]
+CMD ["python","root.py"]
 
-EXPOSE 5000
+EXPOSE 5003

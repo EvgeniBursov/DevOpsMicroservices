@@ -6,6 +6,6 @@ COPY . .
 
 RUN pip install -r requirements.txt
 
-CMD ["python", "mul.py"]
+CMD ["python", "log.py"]
 
-EXPOSE 5006
+EXPOSE 5002

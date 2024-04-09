@@ -8,4 +8,4 @@ RUN pip install -r requirements.txt
 
 CMD ["python", "sin.py"]
 
-EXPOSE 5007
+EXPOSE 5006

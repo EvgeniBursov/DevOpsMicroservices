@@ -1,36 +1,36 @@
 import flask
+from math import pi
+
 
 app = flask.Flask(__name__)
 
-@app.route('/', methods = ['GET'])
-def sinFun():
-    num1 = float(flask.request.args.get('num1'))
-    sin_param = sin(num1)
-    return flask.jsonify({'result': sin_param})
+@app.route('/', methods=['GET'])
+def fib():
+    try:
+        num1 = flask.request.args.get('num1')
+        num2 = flask.request.args.get('num2')
+
+        if '-' in num1[0] or '-' in num2[0] or '.' in num1[0] or '.' in num2[0]:
+            message = 'fibonachi can be float or negative'
+            return flask.jsonify({'result': message})
+        else:
+            num1 = int(num1)
+            num2 = int(num2)
+            fib_sequence = [0, 1]
+            while len(fib_sequence) < num1:
+                fib_sequence.append(fib_sequence[-1] + fib_sequence[-2])
+            result = fib_sequence
+            return flask.jsonify({'result': result})
+
+
+        
+    
+    except ValueError:
+        return flask.jsonify({'error': 'Invalid input. Please provide valid numbers.'})
+
+    except Exception as e:
+        return flask.jsonify({'error': str(e)})
+
 
 if __name__ == '__main__':
-    app.run(host = '0.0.0.0', port = 5007, debug = True)
-
-
-
-def factorial(n):
-    if n == 0:
-        return 1
-    else:
-        return n * factorial(n-1)
-
-def sin(x, terms=10):
-    result = 0
-    for n in range(terms):
-        sign = (-1) ** n
-        numerator = x ** (2 * n + 1)
-        denominator = factorial(2 * n + 1)
-        result += sign * (numerator / denominator)
-    return result
-
-
-
-
-
-
-
+    app.run(host='0.0.0.0', port=5006, debug=True)

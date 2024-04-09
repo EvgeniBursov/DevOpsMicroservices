@@ -6,6 +6,6 @@ COPY . .
 
 RUN pip install -r requirements.txt
 
-CMD ["python", "sub.py"]
+CMD ["python", "exp.py"]
 
 EXPOSE 5005

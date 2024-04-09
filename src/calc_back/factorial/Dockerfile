@@ -6,6 +6,6 @@ COPY . .
 
 RUN pip install -r requirements.txt
 
-CMD ["python", "divide.py"]
+CMD ["python", "factorial.py"]
 
-EXPOSE 5003
+EXPOSE 5000
