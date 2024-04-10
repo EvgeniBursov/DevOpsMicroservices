@@ -22,9 +22,6 @@ def fib():
             result = fib_sequence
             return flask.jsonify({'result': result})
 
-
-        
-    
     except ValueError:
         return flask.jsonify({'error': 'Invalid input. Please provide valid numbers.'})
 

@@ -10,7 +10,7 @@ port_map = {
     'root': 5003,
     'gcd': 5004,
     'exp': 5005,
-    'sin': 5006,
+    'fib': 5006,
 }
 
 @app.route('/', methods = ['GET', 'POST'])
@@ -44,10 +44,21 @@ def index():
         message = "please dont use !@#$%^&*()\/"
         return flask.render_template('calc.html', result={'error': message})
    
-    result = requests.get(url, params = {
-        'num1': num1,
-        'num2': num2
-    }).json()['result']
+    #result = requests.get(url, params = {
+    #    'num1': num1,
+    #    'num2': num2
+    #}).json()['result']
+
+
+    try:
+        response = requests.get(url, params={'num1': num1, 'num2': num2})
+        result = response.json()['result']
+        return flask.render_template('calc.html', result={'result': result})
+    except requests.exceptions.ConnectionError as e:
+        error_message = f"Failed to connect to the {operation} service."
+        return flask.render_template('calc.html', result={'error': error_message})
+    
+
     
 
     return flask.render_template('calc.html', result = {

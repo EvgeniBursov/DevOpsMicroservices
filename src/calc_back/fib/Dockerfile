@@ -6,6 +6,6 @@ COPY . .
 
 RUN pip install -r requirements.txt
 
-CMD ["python", "sin.py"]
+CMD ["python", "fib.py"]
 
 EXPOSE 5006
