@@ -11,12 +11,12 @@ def factorial():
         if '-' in num1[0] or '-' in num2[0]:
             message = "Factorial is not defined for negative numbers."
             data = {'error': message}
-            return flask.jsonify({'result': data})
+            return flask.jsonify({'error': message})
             
         if '.' in num1 or '.' in num2:
             message = "Factorial is not defined for float numbers."
             data = {'error': message}
-            return flask.jsonify({'result': data})
+            return flask.jsonify({'error': message})
         
         num1 = int(num1)
         num2 = int(num2)

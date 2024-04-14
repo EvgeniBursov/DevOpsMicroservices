@@ -1,5 +1,4 @@
 import flask
-from math import pi
 
 
 app = flask.Flask(__name__)
@@ -12,7 +11,7 @@ def fib():
 
         if '-' in num1[0] or '-' in num2[0] or '.' in num1[0] or '.' in num2[0]:
             message = 'fibonachi can be float or negative'
-            return flask.jsonify({'result': message})
+            return flask.jsonify({'error': message})
         else:
             num1 = int(num1)
             num2 = int(num2)
@@ -23,7 +22,8 @@ def fib():
             return flask.jsonify({'result': result})
 
     except ValueError:
-        return flask.jsonify({'error': 'Invalid input. Please provide valid numbers.'})
+        message = 'Invalid input. Please provide valid numbers.'
+        return flask.jsonify({'error': message})
 
     except Exception as e:
         return flask.jsonify({'error': str(e)})

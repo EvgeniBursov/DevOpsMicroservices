@@ -10,7 +10,7 @@ def gcd():
     if '.' in num1 or '.' in num2:
         message = "GCD is not defined for float numbers."
         data = {'error': message}
-        return flask.jsonify({'result': data})   
+        return flask.jsonify({'error': message})   
     else:
         num1 = int(num1)
         num2 = int(num2)

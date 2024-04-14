@@ -12,7 +12,7 @@ def log():
         if '-' in num1[0] or '-' in num2[0]:
             message = "logarithm is not defined for negative numbers."
             data = {'error': message}
-            return flask.jsonify({'result': data})
+            return flask.jsonify({'error': message})
         else:
             num1 = float(num1)
             num2 = float(num2)
@@ -23,10 +23,11 @@ def log():
             return flask.jsonify({'result': result})
 
     except ValueError:
-        return flask.jsonify({'result': 'Invalid input. Please provide valid numbers.'})
+        message = 'Invalid input. Please provide valid numbers.'
+        return flask.jsonify({'error': message})
 
     except Exception as e:
-        return flask.jsonify({'result': str(e)})
+        return flask.jsonify({'error': str(e)})
 
 
 if __name__ == '__main__':

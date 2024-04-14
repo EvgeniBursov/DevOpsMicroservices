@@ -10,19 +10,19 @@ def root():
     if '-' in num1 or '-' in num2:
         message = "Root cant be negative"
         data = {'error': message}
-        return flask.jsonify({'result': data})
+        return flask.jsonify({'error': message})
     
     if '.' in num2:
         message = "Root is not can be float numbers."
         data = {'error': message}
-        return flask.jsonify({'result': data})
+        return flask.jsonify({'error': message})
     else:
         num1 = float(num1)
         num2 = int(num2)
         if num2 == 0:
             message = "Root is not can be 0"
             data = {'error': message}
-            return flask.jsonify({'result': data})
+            return flask.jsonify({'error': message})
         if num1 == 0:
             res = 0
             return flask.jsonify({'result': res})
