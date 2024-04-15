@@ -30,8 +30,8 @@ def root():
     guess = num1 / 2
     for _ in range(100):
         guess = ((num2 - 1) * guess + num1 / guess ** (num2 - 1)) / num2
-    
-    return flask.jsonify({'result': guess}) 
+    resultStr = str(guess)
+    return flask.jsonify({'result': 'root operation: \n' + resultStr}) 
 
 
 

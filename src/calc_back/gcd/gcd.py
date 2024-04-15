@@ -22,7 +22,8 @@ def gcd():
     while num2 != 0:
         num1, num2 = num2, num1 % num2
         result = num1
-    return flask.jsonify({'result': result})
+    resultStr = str(result)
+    return flask.jsonify({'result': 'GCD operation: \n' + resultStr})
 
 if __name__ == '__main__':
     app.run(host = '0.0.0.0', port = 5004, debug = True)

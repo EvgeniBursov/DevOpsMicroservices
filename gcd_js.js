@@ -34,10 +34,10 @@ app.post('/', (req, res) => {
       const num2Int = Math.abs(parseInt(num2));
 
       if (num1Int === 0) {
-          return res.json({ result: num2Int });
+          return res.json({ result: 'GCD operation from java script: \n' + num2Int });
       }
       if (num2Int === 0) {
-          return res.json({ result: num1Int });
+          return res.json({ result: 'GCD operation from java script: \n' + num1Int });
       }
 
       let a = num1Int;
@@ -50,7 +50,7 @@ app.post('/', (req, res) => {
       }
 
       const result = a;
-      return res.json({ result: result });
+      return res.json({ result: 'GCD operation from java script: \n' + result });
   }
 });
 

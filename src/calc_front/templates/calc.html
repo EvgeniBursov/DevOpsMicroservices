@@ -6,59 +6,134 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Calculator</title>
   <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <style>
+    .calculator-form {
+      max-width: 600px;
+      margin: 0 auto;
+      padding: 20px;
+      background-color: #ffffff;
+      border-radius: 8px;
+      box-shadow: 0px 4px 10px rgba(157, 13, 13, 0.478);
+    }
+
+    .calculator-form h1 {
+      font-size: 3rem;
+      font-weight: bold;
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .calculator-form .form-group {
+      margin-bottom: 15px;
+    }
+
+    .calculator-form .form-group input,
+    .calculator-form .form-group select {
+      width: 100%;
+      padding: 10px;
+      border: 4px solid #780f0f7d;
+      border-radius: 5px;
+      font-size: 1rem;
+    }
+
+    .calculator-form .form-group select {
+      appearance: none;
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      background-image: url('data:image/svg+xml;utf8,<svg fill="#000000" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path d="M7 10l5 5 5-5z" /></svg>');
+      background-repeat: no-repeat;
+      background-position: right 10px center;
+      padding-right: 30px;
+    }
+
+    .calculator-form button {
+      width: 100%;
+      padding: 12px 0;
+      background-color: #901c2b;
+      color: #ffffff;
+      border: none;
+      border-radius: 5px;
+      font-size: 1.2rem;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .calculator-form button:hover {
+      background-color: #b82e12;
+    }
+
+    .result-display {
+      margin-top: 20px;
+      text-align: center;
+      border: 4px solid #780f0f7d;
+    }
+
+    .result-display h3 {
+      font-size: 1.5rem;
+      font-weight: bold;
+    }
+
+    .result-display p {
+      font-size: 1.2rem;
+    }
+  </style>
 </head>
 <body class="bg-gray-100 min-h-screen flex items-center justify-center">
-  <div class="max-w-lg bg-white p-8 rounded-md shadow-md">
+  <div class="max-w-lg bg-white p-8 rounded-md shadow-md calculator-form">
     <h1 class="text-3xl font-bold mb-4 text-center">Calculator</h1>
     <form action="/" method="POST" class="space-y-4">
-      <div class="flex flex-col space-y-2">
+      <div class="form-group">
         <input type="text" name="num1" placeholder="First Number" class="rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 focus:ring-opacity-50 text-center px-4 py-2">
+      </div>
+      <div class="form-group">
         <input type="text" name="num2" placeholder="Second Number" class="rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 focus:ring-opacity-50 text-center px-4 py-2">
       </div>
-      <select name="operation" class="rounded-md border-black-300 shadow-sm focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 focus:ring-opacity-50 text-center px-4 py-2">
-        <option>factorial</option>
-        <option>binary</option>
-        <option>root</option>
-        <option>exp</option>
-        <option>fib</option>
-        <option>log</option>
-        <option>gcd</option>
-      </select>
-      <button type="submit" name="submit" value="submit" class="bg-indigo-500 text-white py-2 px-4 rounded-md hover:bg-indigo-600 focus:outline-none focus:ring-2 focus:ring-indigo-200 focus:ring-opacity-50 w-full">Calculate</button>
+      <div class="form-group">
+        <select name="operation" class="rounded-md border-black-300 shadow-sm focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 focus:ring-opacity-50 text-center px-4 py-2">
+          <option>Please select math operation</option>
+          <option>factorial</option>
+          <option>binary</option>
+          <option>root</option>
+          <option>exp</option>
+          <option>fib</option>
+          <option>log</option>
+          <option>gcd</option>
+        </select>
+      </div>
+      <button type="submit" name="submit" value="submit" class="bg-indigo-500 text-white py-2 px-4 rounded-md hover:bg-indigo-600 focus:outline-none focus:ring-2 focus:ring-indigo-200 focus:ring-opacity-50">Calculate</button>
     </form>
-    <br>
-    {% if result %}
-    {% if result.get('error') %}
-    <script>
-      window.onload = function() {
-        alert("{{ result.get('error') }}");
-      };
-    </script>
-    {% else %}
-    {% set ns = namespace(symbol = result.get('operation')) %}
-    {% if ns.symbol == 'factorial' %}
-      {% set ns.symbol = '!' %}
-    {% elif ns.symbol == 'binary' %}
-      {% set ns.symbol = 'b' %}
-    {% elif ns.symbol == 'root' %}
-      {% set ns.symbol = 'r' %}
-    {% elif ns.symbol == 'exp' %}
-      {% set ns.symbol = '^' %}
-    {% elif ns.symbol == 'sin' %}
-      {% set ns.symbol = 'sin' %}
-    {% elif ns.symbol == 'log' %}
-      {% set ns.symbol = 'log' %}
-    {% elif ns.symbol == 'gcd' %}
-      {% set ns.symbol = 'gcd' %}
-    {% endif %}
-    <div class="mt-4 text-center">
-      <h3 class="text-xl font-bold">Result: </h3>
-      <!--<p>{{ result.get('num1') }} {{ ns.symbol }} {{ result.get('num2') }} = {{ result.get('result') }}</p>-->
-      <p>{{ result.get('result') }}</p>
+    <div class="result-display">
+      {% if result %}
+        {% if result.get('error') %}
+          <script>
+            window.onload = function() {
+              alert("{{ result.get('error') }}");
+            };
+          </script>
+        {% else %}
+          {% set ns = namespace(symbol = result.get('operation')) %}
+          {% if ns.symbol == 'factorial' %}
+            {% set ns.symbol = '!' %}
+          {% elif ns.symbol == 'binary' %}
+            {% set ns.symbol = 'b' %}
+          {% elif ns.symbol == 'root' %}
+            {% set ns.symbol = 'r' %}
+          {% elif ns.symbol == 'exp' %}
+            {% set ns.symbol = '^' %}
+          {% elif ns.symbol == 'sin' %}
+            {% set ns.symbol = 'sin' %}
+          {% elif ns.symbol == 'log' %}
+            {% set ns.symbol = 'log' %}
+          {% elif ns.symbol == 'gcd' %}
+            {% set ns.symbol = 'gcd' %}
+          {% endif %}
+          <h3 class="text-xl font-bold">Result: </h3>
+          <p>{{ result.get('result') }}</p>
+        {% endif %}
+      {% endif %}
     </div>
-    {% endif %}
-    {% endif %}
   </div>
 </body>
 </html>
 
+<button type="submit" name="submit" value="submit" class="bg-indigo-500 text-white py-2 px-4 rounded-md hover:bg-indigo-600 focus:outline-none focus:ring-2 focus:ring-indigo-200 focus:ring-opacity-50">Calculate</button>

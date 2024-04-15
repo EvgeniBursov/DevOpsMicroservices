@@ -19,7 +19,7 @@ def power():
             num1 = int(num1)
 
         if '-' in str(num1)[0]:
-            num1 = abs(num1)
+            num1 = -abs(num1)
 
         num2 = int(num2)
 
@@ -29,8 +29,9 @@ def power():
             result = 1 / (num1 ** abs(num2))
         else:
             result = num1 ** num2
-
-        return flask.jsonify({'result': result})
+        
+        resultStr = str(result)
+        return flask.jsonify({'result': 'power operation: \n' + resultStr})
 
                 
     except Exception as e:

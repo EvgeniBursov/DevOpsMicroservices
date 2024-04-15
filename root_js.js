@@ -22,13 +22,13 @@ app.get('/', (req, res) => {
       if (num1.includes('-') || num2.includes('-')) {
         const message = "Root can't be negative";
         const data = { error: message };
-        return res.json({ result: data });
+        return res.json({ error: message });
     }
 
     if (num2.includes('.')) {
         const message = "Root cannot be float numbers.";
         const data = { result: message };
-        return res.json({ result: message });
+        return res.json({ error: message });
     } else {
         const num1Float = parseFloat(num1);
         const num2Int = parseInt(num2);
@@ -36,12 +36,12 @@ app.get('/', (req, res) => {
         if (num2Int === 0) {
             const message = "Root cannot be 0";
             const data = { error: message };
-            return res.json({ result: message });
+            return res.json({ error: message });
         }
         
         if (num1Float === 0) {
             const result = 0;
-            return res.json({ result: result });
+            return res.json({ result:'root operation from java script: \n' + result });
         }
     }
 
@@ -52,7 +52,7 @@ app.get('/', (req, res) => {
     result = guess
     console.log(result)
 
-    return res.json({result: result});
+    return res.json({result: 'root operation from java script: \n' + result});
 });
 
 app.listen(port, host = '0.0.0.0', () => {

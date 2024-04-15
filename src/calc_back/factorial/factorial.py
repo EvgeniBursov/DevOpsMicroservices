@@ -30,10 +30,11 @@ def factorial():
                 resultForNum1 *= i
             for i in range(1, num2+1):
                 resultForNum2 *= i 
-            return flask.jsonify({'result': resultForNum1})
+            resultStr = 'factorial operation: \n' +  str(resultForNum1)
+            return flask.jsonify({'result': resultStr})
         
     except Exception as e:
-        return flask.jsonify({'result': str(e)})
+        return flask.jsonify({'error': str(e)})
 
 if __name__ == '__main__':
     app.run(host = '0.0.0.0', port = 5000, debug = True)

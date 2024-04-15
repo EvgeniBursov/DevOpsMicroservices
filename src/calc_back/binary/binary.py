@@ -17,17 +17,17 @@ def binary():
 
         if '.' not in num1:
             num1 = int(num1)
-            newNum = str(bin(num1)[2:])
+            newNum = 'binary operation: \n' + str(bin(num1)[2:])
             return flask.jsonify({'result': newNum})
         else:
             num1 = float(num1)
             packed = struct.pack('!f', num1)
             binary = ''.join(f'{byte:08b}' for byte in packed)
-            result = str(binary)
+            result = 'binary operation: \n' + str(binary)
             return flask.jsonify({'result': result})
 
     except Exception as e:
-        return flask.jsonify({'result': str(e)})
+        return flask.jsonify({'error': str(e)})
 
 
 if __name__ == '__main__':

@@ -19,8 +19,9 @@ def log():
             x = 0
             while num2**x < num1:
                 x += 0.001  
-            result = round(x, 5) 
-            return flask.jsonify({'result': result})
+            result = round(x, 5)
+            resultStr = str(result)
+            return flask.jsonify({'result': 'log operation: \n' + resultStr})
 
     except ValueError:
         message = 'Invalid input. Please provide valid numbers.'

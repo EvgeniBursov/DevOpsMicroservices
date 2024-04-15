@@ -18,8 +18,8 @@ def fib():
             fib_sequence = [0, 1]
             while len(fib_sequence) < num1:
                 fib_sequence.append(fib_sequence[-1] + fib_sequence[-2])
-            result = fib_sequence
-            return flask.jsonify({'result': result})
+            result = str(fib_sequence)
+            return flask.jsonify({'result': 'fibonachi operation: \n' + result})
 
     except ValueError:
         message = 'Invalid input. Please provide valid numbers.'
